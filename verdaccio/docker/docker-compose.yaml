@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  verdaccio:
+    build:
+      context: ./verdaccio
+    ports:
+      - "4873:4873"
+    volumes:
+        - ../../storage:/verdaccio/storage
+        - ../../plugins:/verdaccio/plugins
+        - ./verdaccio/conf:/verdaccio/conf
