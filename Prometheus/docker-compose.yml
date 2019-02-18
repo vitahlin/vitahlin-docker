@@ -1,0 +1,16 @@
+version: '3'
+
+networks:
+  frontend:
+    driver: ${NETWORKS_DRIVER}
+  backend:
+    driver: ${NETWORKS_DRIVER}
+
+services:
+    grafana:
+      build: ./grafana
+      environment:
+        - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
+      ports:
+        - "${GRAFANA_PORT}:3000"
+      user: "104"
