@@ -13,4 +13,4 @@ services:
         - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
       ports:
         - "${GRAFANA_PORT}:3000"
-      user: "104"
+      tty: true
