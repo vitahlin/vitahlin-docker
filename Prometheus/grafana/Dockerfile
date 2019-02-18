@@ -9,4 +9,8 @@ RUN chown -R root:root /etc/grafana && \
     chown -R grafana:grafana /var/lib/grafana && \
     chown -R grafana:grafana /usr/share/grafana
 
+# Install plugins
+RUN grafana-cli plugins install grafana-piechart-panel
+RUN grafana-cli plugins install grafana-worldmap-panel
+
 EXPOSE 3000
