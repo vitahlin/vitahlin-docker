@@ -18,23 +18,8 @@ services:
         - frontend
         - backend
 
-    node-exporter:
-      build: ./nodeexporter
-      volumes:
-      - /proc:/host/proc:ro
-      - /sys:/host/sys:ro
-      - /:/rootfs:ro
-      ports:
-        - 9100:9100
-      tty: true  
-      networks:
-        - frontend
-        - backend
-
     prometheus:
       build: ./prometheus
-      links:
-        - node-exporter
       volumes:
         - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       ports:
