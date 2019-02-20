@@ -39,8 +39,14 @@ services:
       build: ./prometheus
       volumes:
         - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+        - prometheus_data:/prometheus
+      command:
+        - '--storage.tsdb.path=/prometheus'
+        - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+        - '--web.console.templates=/usr/share/prometheus/consoles'
       ports:
         - "${PROMETHEUS_PORT}:9090"
+      restart: always
       tty: true
       networks:
         - frontend
