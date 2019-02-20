@@ -48,6 +48,7 @@ services:
         - "${PROMETHEUS_PORT}:9090"
       restart: always
       tty: true
+      network_mode: "host"
       networks:
         - frontend
         - backend
