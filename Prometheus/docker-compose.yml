@@ -39,7 +39,6 @@ services:
       build: ./prometheus
       volumes:
         - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-        - prometheus_data:/prometheus
       command:
         - '--storage.tsdb.path=/prometheus'
         - '--web.console.libraries=/usr/share/prometheus/console_libraries'
