@@ -13,3 +13,8 @@ scrape_configs:
       - targets: ['localhost:9100']
         labels:
           instance: node-exporter
+  - job_name: mysql-exporter
+    static_configs:
+      - targets: ['localhost:9104']
+        labels:
+          instance: mysql-exporter

@@ -34,6 +34,18 @@ services:
       networks:
         - frontend
         - backend
+    
+    mysql-exporter:
+      build: ./mysql-exporter
+      volumes:
+        - ./mysql-exporter/.my.cnf:/.my.cnf
+      command:
+        - '--config.my-cnf=.my.cnf'
+      ports:
+        - "${MYSQL_EXPORTER_PORT}:9104"
+      networks:
+        - frontend
+      tty: true
       
     prometheus:
       build: ./prometheus
@@ -46,6 +58,5 @@ services:
         - '--web.console.templates=/usr/share/prometheus/consoles'
       ports:
         - "${PROMETHEUS_PORT}:9090"
-      restart: always
       tty: true
       network_mode: "host"
