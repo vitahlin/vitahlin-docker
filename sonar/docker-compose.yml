@@ -1,11 +1,15 @@
 version: '3'
 
+networks:
+  default:
+    driver: bridge
+
 services:
   qube:
     depends_on:
       - pg
     build:
-      context: ./sonarqube
+      context: ./qube
       args:
         - SONAR_VERSION=${SONAR_VERSION}
     privileged: true
@@ -22,6 +26,9 @@ services:
       - ${DATA_PATH_HOST}/qube/data:/opt/sonarqube/data
       - ${DATA_PATH_HOST}/qube/log:/opt/sonarqube/log
     tty: true
+    networks:
+      - default
+
   pg:
     build:
       context: ./pg
@@ -33,4 +40,6 @@ services:
       - ${DATA_PATH_HOST}/pg:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+    networks:
+      - default
     tty: true
