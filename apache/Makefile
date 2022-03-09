@@ -1,4 +1,4 @@
-.PHONY: build up start stop down status hexo
+.PHONY: build up start stop down status exec
 
 build:
 	docker-compose build
